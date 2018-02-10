@@ -14,6 +14,46 @@
  * limitations under the License.
  */
 
+/* */
+@font-face {
+  font-family: Eofont;
+  src: url("./Eofont-R.otf") format("opentype");
+}
+
+#drop_zone {
+  font-family: 'Eofont';
+  border: 2px dashed #bbb;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  border-radius: 5px;
+  padding: 25px;
+  margin: 25px;
+  text-align: center;
+  font: 20pt bold 'Vollkorn';
+  color: #bbb;
+}
+
+#download {
+  margin: 25px;
+}
+
+#canvas-container {
+  position: relative;
+  height: 0;
+  overflow: hidden;
+  padding-top: 56.25%;
+  margin: 25px;
+}
+
+#canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+/* */
+
 body {
   margin: 0;
 }
@@ -172,14 +212,14 @@ a img{
 
 .android-be-together-section {
   position: relative;
-  height: 800px;
+  height: 400px;
   width: auto;
   background-color: #f3f3f3;
   background-size: cover;
 }
 
 .logo-font {
-  font-family: 'Roboto', 'Helvetica', 'Arial', sans-serif;
+  font-family: 'Eofont', 'Roboto', 'Helvetica', 'Arial', sans-serif;
   line-height: 1;
   color: #767777;
   font-weight: 500;
