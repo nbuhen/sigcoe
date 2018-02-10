@@ -51,6 +51,7 @@
           <div class="android-navigation-container">
             <nav class="android-navigation mdl-navigation">
               <a class="mdl-navigation__link mdl-typography--text-uppercase" href="https://twitter.com/ColorOfEorzea">#ColorOfEorzea</a>
+              <a class="mdl-navigation__link mdl-typography--text-uppercase" href="http://nippori30.com/font/">Eofont</a>
             </nav>
           </div>
         </div>
@@ -58,16 +59,74 @@
 
       <div class="android-content mdl-layout__content">
         <a name="top"></a>
+
         <div class="android-be-together-section mdl-typography--text-center">
-          <div class="logo-font android-slogan">slogan</div>
-          <div class="logo-font android-sub-slogan">sub-slogan</div>
+          <div class="logo-font android-slogan">SIMPLIFY SIGN<br>COLOR OF EORZEA</div>
+          <div class="logo-font android-sub-slogan">DROP SCREEN SHOT AND SIGN IT</div>
         </div>
+
+        <div id="drop_zone">DROP A FILE HERE</div>
+        <div id="download"></div>
+        <div id="canvas-container">
+          <canvas id="canvas"></canvas>
+        </div>
+
+        <script>
+          var container = document.getElementById('canvas-container');
+          var canvas = document.getElementById('canvas');
+          var ctx = canvas.getContext('2d');
+
+          function handleFileSelect(evt) {
+            evt.stopPropagation();
+            evt.preventDefault();
+        
+            var file = evt.dataTransfer.files[0];
+
+            var reader = new FileReader();
+            reader.onload = function() {
+                var img = new Image();
+                img.src = reader.result;
+                img.onload = function() {
+                    canvas.width = img.width;
+                    canvas.height = img.height;
+                    ctx.drawImage(img, 0, 0);
+
+                    ctx.font = "bold 40px 'Eofont'";
+                    ctx.textAlign = 'left';
+                    ctx.textBaseline = 'top';
+                    ctx.fillStyle = '#FFFFFF';
+                    ctx.fillText('COLOR OF EORZEA', 25, 25);
+                    
+                    var dl = document.createElement('img');
+                    dl.src = canvas.toDataURL('image/jpeg');
+                    dl.style = "width: 100%;";
+                    document.getElementById('download').appendChild(dl);
+
+                    container.removeChild(canvas);
+                }
+            }
+            reader.readAsDataURL(file);
+          }
+        
+          function handleDragOver(evt) {
+            evt.stopPropagation();
+            evt.preventDefault();
+            evt.dataTransfer.dropEffect = 'copy';
+          }
+        
+          var dropZone = document.getElementById('drop_zone');
+          dropZone.addEventListener('dragover', handleDragOver, false);
+          dropZone.addEventListener('drop', handleFileSelect, false);
+        </script>
         
         <footer class="android-footer mdl-mega-footer">
           <div class="mdl-mega-footer--top-section">
             <div class="mdl-mega-footer--left-section">
               <!-- todo -->
             </div>
+          </div>
+          <div class="mdl-mega-footer--middle-section">
+              <p class="mdl-typography--font-light">Maintainer <a href="https://twitter.com/NBuhen">@NBuhen</a></p>
           </div>
         </footer>
       </div>
